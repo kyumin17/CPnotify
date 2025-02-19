@@ -30,10 +30,8 @@ def get_data():
             start = data[0][11:16]
             name = data[4]
             
-            update_list.append([date, start, name])
+            update_list.append([date, start, name, 'atcoder'])
     
-    update_list.sort()
     before_contest_list = update_list
 
-get_data()
-schedule.every().day.at("06:00").do(get_data) # 6시마다 데이터 가져옴
+schedule.every().day.at('06:00').do(get_data) # 6시마다 데이터 가져옴

@@ -26,10 +26,8 @@ def get_data():
             start = timezone[11:16]
             name = contest['name']
             
-            update_list.append([date, start, name])
+            update_list.append([date, start, name, 'codeforces'])
     
-    update_list.sort()
     before_contest_list = update_list
 
-get_data()
 schedule.every().day.at("06:00").do(get_data) # 6시마다 데이터 가져옴
