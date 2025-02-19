@@ -25,9 +25,14 @@ def get_data():
         contest_list = contest_table.select('div > div > table > tbody > tr')
         
         for contest in contest_list:
-            row = re.sub('<.+?>', '', str(contest), 0).strip().split('\n')
-            update_list.append({'date' : row[0][5:10], 'start': row[0][11:16] ,'name': row[4], 'duration': row[6], 'rating': row[7]})
+            data = re.sub('<.+?>', '', str(contest), 0).strip().split('\n')
+            date = data[0][5:10]
+            start = data[0][11:16]
+            name = data[4]
+            
+            update_list.append([date, start, name])
     
+    update_list.sort()
     before_contest_list = update_list
 
 get_data()

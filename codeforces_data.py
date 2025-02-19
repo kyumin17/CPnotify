@@ -21,9 +21,14 @@ def get_data():
         filter_list = [contest for contest in contest_list if contest['phase'] == 'BEFORE']
         
         for contest in filter_list:
-            start_time = get_time(contest['startTimeSeconds'])
-            update_list.append({'date': start_time[5:10], 'start': start_time[11:16], 'name': contest['name']})
+            timezone = get_time(contest['startTimeSeconds'])
+            date = timezone[5:10]
+            start = timezone[11:16]
+            name = contest['name']
             
+            update_list.append([date, start, name])
+    
+    update_list.sort()
     before_contest_list = update_list
 
 get_data()
