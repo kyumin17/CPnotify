@@ -26,27 +26,26 @@ async def send_alerm():
 
 @bot.event
 async def on_ready():
+    await bot.tree.sync()
+    
     schedule.every().day.at('12:00').do(lambda: asyncio.create_task(send_alerm()))
-    schedule.every().day.at('16:00').do(codeforces_data.get_data)
-    schedule.every().day.at('15:50').do(atcoder_data.get_data)
+    schedule.every().day.at('04:00').do(codeforces_data.get_data)
+    schedule.every().day.at('04:10').do(atcoder_data.get_data)
     
     while True:
         schedule.run_pending()
         await asyncio.sleep(1)
 
-@bot.command(name='codeforces', description='코드포스 대회 정보를 불러옵니다')
-async def codeforces(ctx):
-    if ctx.channel.name == setting.channel_name:
-        await ctx.send(message.get_message_by_type('codeforces'))
+@bot.tree.command(name='codeforces', description='코드포스 대회 정보를 불러옵니다')
+async def codeforces(interaction: discord.Interaction):
+    await interaction.response.send_message(message.get_message_by_type('codeforces'))
     
-@bot.command(name='atcoder', description='앳코더 대회 정보를 불러옵니다')
-async def atcoder(ctx):
-    if ctx.channel.name == setting.channel_name:
-        await ctx.send(message.get_message_by_type('atcoder'))
+@bot.tree.command(name='atcoder', description='앳코더 대회 정보를 불러옵니다')
+async def atcoder(interaction: discord.Interaction):
+    await interaction.response.send_message(message.get_message_by_type('atcoder'))
     
-@bot.command(name='all', description='코드포스 및 앳코더 대회 정보를 불러옵니다')
-async def all(ctx):
-    if ctx.channel.name == setting.channel_name:
-        await ctx.send(message.get_message_by_type('all'))
+@bot.tree.command(name='all', description='코드포스 및 앳코더 대회 정보를 불러옵니다')
+async def all(interaction: discord.Interaction):
+    await interaction.response.send_message(message.get_message_by_type('all'))
 
 bot.run(token)
