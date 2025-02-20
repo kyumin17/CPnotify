@@ -3,7 +3,7 @@
 코드포스, 앳코더의 대회 일정을 알려줍니다.
 
 ### 세팅
-[봇 추가하기] (https://discord.com/oauth2/authorize?client_id=1325201512527298683&permissions=2147483648&integration_type=0&scope=bot)
+[봇 추가하기](https://discord.com/oauth2/authorize?client_id=1325201512527298683&permissions=2147483648&integration_type=0&scope=bot)
 
 📢cp-알림 텍스트 채널을 만듭니다.
 
