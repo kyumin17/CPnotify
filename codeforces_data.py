@@ -1,6 +1,5 @@
 import requests
 import datetime
-import schedule
 
 before_contest_list = []
 
@@ -27,7 +26,7 @@ def get_data():
             name = contest['name']
             
             update_list.append([date, start, name, 'codeforces'])
+    else:
+        print('codeforces data loading error: ' + response.status_code)
     
     before_contest_list = update_list
-
-schedule.every().day.at("06:00").do(get_data) # 6시마다 데이터 가져옴
