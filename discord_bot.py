@@ -20,7 +20,7 @@ async def send_alerm():
     
     for guild in bot.guilds:
         for channel in guild.text_channels:
-            if channel.name == setting.channel_name:
+            if setting.channel_name in channel.name:
                 for msg in daily_message_list:
                     await channel.send(msg)
 

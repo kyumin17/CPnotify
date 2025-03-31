@@ -72,8 +72,14 @@ def get_daily_message_list(all_list): # 그날 대회 일정을 list로 반환
         else:
             contest_type = '앳코더'
             
-        message = f'# :mega: {contest[1]}\n'
-        message += f'오늘 **{convert_time(contest[0])}**에 {contest_type}에서 **{contest[1]}**가 열립니다'
+        message = ''
+        if contest_type == '코드포스':
+            message += f'# <:codeforces:{setting.codeforces_emoji_id}> {contest[1]}\n'
+            message += f'오늘 **{convert_time(contest[0])}**에 {contest_type}에서 [**{contest[1]}**](https://codeforces.com/contests)가 열립니다. 많은 참여 부탁드립니다!'
+        else:
+            message += f'# <:atcoder:{setting.atcoder_emoji_id}> {contest[1]}\n'
+            message += f'오늘 **{convert_time(contest[0])}**에 {contest_type}에서 [**{contest[1]}**](https://atcoder.jp/contests/)가 열립니다. 많은 참여 부탁드립니다!'
+            
         message_list.append(message)
         
     return message_list

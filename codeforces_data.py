@@ -25,7 +25,8 @@ def get_data():
             start = timezone[11:16]
             name = contest['name']
             
-            update_list.append([date, start, name, 'codeforces'])
+            if 'Div' in name:
+                update_list.append([date, start, name, 'codeforces'])
     else:
         print('codeforces data loading error: ' + response.status_code)
     

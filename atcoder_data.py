@@ -32,7 +32,8 @@ def get_data():
             start = data[0][11:16]
             name = data[4]
             
-            update_list.append([date, start, name, 'atcoder'])
+            if 'AtCoder' in name:
+                update_list.append([date, start, name, 'atcoder'])
     else:
         print('atcoder data loading error: ' + str(response.status_code))
     
